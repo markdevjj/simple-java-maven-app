@@ -20,6 +20,16 @@ pipeline {
 
             }
 
+            post {
+
+                always {
+
+                    junit '**/target/*-reports/TEST-*.xml'
+
+                }
+
+            }
+
         }
 
     }
