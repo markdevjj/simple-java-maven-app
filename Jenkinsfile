@@ -16,15 +16,21 @@ pipeline {
 
             steps {
 
-                parallel(install: {
+                parallel(
 
-                    sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
+                        install: {
 
-                }, sonar: {
+                            sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
 
-                    sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+                        },
 
-                })
+                        sonar: {
+
+                            sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+
+                        }
+
+                )
 
             }
 
@@ -37,6 +43,16 @@ pipeline {
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
 
                 }
+
+            }
+
+        }
+
+        stage('deploy') {
+
+            steps {
+
+                    sh "mvn deploy -DskipTests"
 
             }
 
