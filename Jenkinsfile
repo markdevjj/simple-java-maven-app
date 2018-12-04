@@ -4,7 +4,7 @@ pipeline {
 
     tools {
 
-        jdk 'jdk8'
+        //jdk 'jdk8'
 
         maven 'maven3'
 
@@ -26,7 +26,8 @@ pipeline {
 
                         sonar: {
 
-                            sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+                            sh "mvn sonar:sonar 
+							<!---Dsonar.host.url=${env.SONARQUBE_HOST}"-->
 
                         }
 
