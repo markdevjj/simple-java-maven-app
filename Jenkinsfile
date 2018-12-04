@@ -26,7 +26,8 @@ pipeline {
 
                         sonar: {
 
-                            sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
+                            sh "mvn sonar:sonar
+							//-Dsonar.host.url=${env.SONARQUBE_HOST}"
 
                         }
 
